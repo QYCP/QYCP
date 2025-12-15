@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>构成设计：几何形态 | QYCP</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #111;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    nav {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 100;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav li {
+      display: inline-block;
+      margin-left: 2rem;
+    }
+
+    nav a {
+      font-size: 1rem;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #888;
+    }
+
+    main {
+      padding: 8rem 0 4rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .project-meta {
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .project-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .project-image {
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-description {
+      margin-top: 0.5rem;
+      color: #666;
+      font-style: italic;
+    }
+
+    .project-text {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .project-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #111;
+      color: #fff;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-link:hover {
+      background-color: #333;
+    }
+
+    /* Image Viewer */
+    .image-viewer {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-viewer.active {
+      display: flex;
+    }
+
+    .viewer-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+
+    .viewer-image {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+
+    .viewer-description {
+      color: #fff;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        top: 1rem;
+        right: 1rem;
+      }
+
+      nav li {
+        margin-left: 1.2rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      main {
+        padding: 6rem 0 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#poster">海报</a></li>
+      <li><a href="index.html#composition">构成</a></li>
+      <li><a href="index.html#basic">基础</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="project-text">
+      <h1>构成设计：几何形态</h1>
+      <div class="project-meta">大一课程项目 | 2025年</div>
+      
+      <div class="project-content">
+        <div class="project-image">
+          <img src="微信图片_20251205170558_112_35.jpg" alt="几何形态构成设计" data-img="微信图片_20251205170558_112_35.jpg" data-desc="几何形态构成设计">
+          <div class="image-description">几何形态构成设计</div>
+        </div>
+
+        <div class="project-text">
+          <h2>作品介绍</h2>
+          <p>《几何形态》是我的构成设计课程作业，旨在探索基本几何元素在二维空间中的组合与构成关系。通过对点、线、面的有机结合，创造出具有视觉张力和节奏感的抽象作品。</p>
+          
+          <h2>设计思路</h2>
+          <p>本作品以"几何形态的和谐与冲突"为主题，采用了圆形、方形和三角形等基本几何形状，通过不同大小、方向和色彩的组合，形成视觉上的动态平衡。设计过程中注重留白与负空间的运用，增强作品的层次感和呼吸感。</p>
+          
+          <h2>技术要点</h2>
+          <p>使用Adobe Illustrator进行矢量图形绘制，通过精确的网格系统和对齐工具确保几何元素的准确排列。色彩上采用对比鲜明的红、蓝、黄三原色，营造出强烈的视觉冲击力。</p>
+          
+          <h2>学习收获</h2>
+          <p>通过这个项目，我深刻理解了构成设计的基本原理，掌握了如何通过简单的几何元素创造复杂而有意义的视觉效果。同时，也学会了如何运用色彩理论和空间关系来增强作品的表现力。</p>
+        </div>
+      </div>
+
+      <a href="index.html#portfolio" class="back-link">返回作品集</a>
+    </div>
+  </main>
+
+  <!-- Image Viewer -->
+  <div class="image-viewer" id="imageViewer">
+    <button class="close-btn" id="closeViewer">&times;</button>
+    <div class="viewer-content">
+      <img class="viewer-image" id="viewerImage" alt="">
+      <div class="viewer-description" id="viewerDescription"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 QYCP. All rights reserved.</p>
+    <p>Designed and coded with passion.</p>
+  </footer>
+
+  <script>
+    // Image Viewer Functionality
+    const projectImages = document.querySelectorAll('.project-image img');
+    const imageViewer = document.getElementById('imageViewer');
+    const viewerImage = document.getElementById('viewerImage');
+    const viewerDescription = document.getElementById('viewerDescription');
+    const closeViewer = document.getElementById('closeViewer');
+
+    // Open image viewer
+    projectImages.forEach(image => {
+      image.addEventListener('click', () => {
+        const imgSrc = image.getAttribute('data-img');
+        const imgDesc = image.getAttribute('data-desc');
+        viewerImage.src = imgSrc;
+        viewerDescription.textContent = imgDesc;
+        imageViewer.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close image viewer
+    function closeImageViewer() {
+      imageViewer.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    closeViewer.addEventListener('click', closeImageViewer);
+
+    // Close on outside click
+    imageViewer.addEventListener('click', (e) => {
+      if (e.target === imageViewer) {
+        closeImageViewer();
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && imageViewer.classList.contains('active')) {
+        closeImageViewer();
+      }
+    });
+  </script>
+</body>
+</html>

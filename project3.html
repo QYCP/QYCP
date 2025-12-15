@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>动态图形实验 | QYCP</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Image Viewer Styles */
+    .image-viewer {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-viewer.active {
+      display: flex;
+    }
+
+    .viewer-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+
+    .viewer-content img {
+      width: 100%;
+      height: auto;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #fff;
+      font-size: 30px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .viewer-description {
+      color: #fff;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 1rem;
+    }
+
+    /* Make images clickable */
+    .project-image {
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-image:hover {
+      opacity: 0.9;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #111;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    nav {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 100;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav li {
+      display: inline-block;
+      margin-left: 2rem;
+    }
+
+    nav a {
+      font-size: 1rem;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #888;
+    }
+
+    main {
+      padding: 8rem 0 4rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .project-meta {
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .project-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .project-image {
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-description {
+      margin-top: 0.5rem;
+      color: #666;
+      font-style: italic;
+    }
+
+    .project-text {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .project-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #111;
+      color: #fff;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-link:hover {
+      background-color: #333;
+    }
+
+    footer {
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        top: 1rem;
+        right: 1rem;
+      }
+
+      nav li {
+        margin-left: 1.2rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      main {
+        padding: 6rem 0 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#portfolio">作品集</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="project-text">
+      <h1>动态图形实验</h1>
+      <div class="project-meta">动态视觉设计 | 2025年</div>
+      
+      <div class="project-content">
+        <div class="project-image" data-img="3(1).jpg" data-desc="动态图形实验主视觉">
+          <img src="3(1).jpg" alt="动态图形实验主视觉">
+          <div class="image-description">动态图形实验主视觉</div>
+        </div>
+
+        <div class="project-image" data-img="微信图片_20251205170558_112_35.jpg" data-desc="动态效果关键帧画面">
+          <img src="微信图片_20251205170558_112_35.jpg" alt="动态图形帧画面">
+          <div class="image-description">动态效果关键帧画面</div>
+        </div>
+
+        <div class="project-text">
+          <h2>作品介绍</h2>
+          <p>《光影叙事》是一幅以光线与阴影为主题的海报设计作品。通过精心的构图和色彩处理，展现了光影如何塑造空间感和叙事性，探索了视觉元素如何讲述故事。</p>
+          
+          <h2>设计思路</h2>
+          <p>本作品以"光影对话"为核心概念，采用了强烈的明暗对比和几何形状来创造视觉焦点。设计灵感来源于电影摄影中的光影运用，通过简化的视觉元素来引导观者的视线，构建出具有叙事性的画面。</p>
+          
+          <h2>技术要点</h2>
+          <ul>
+            <li>使用Adobe Photoshop进行图层蒙版和光影效果处理</li>
+            <li>通过黑白灰的层次表现空间深度</li>
+            <li>运用黄金分割比例进行构图</li>
+            <li>采用高对比度色彩方案增强视觉冲击力</li>
+          </ul>
+          
+          <h2>学习收获</h2>
+          <p>通过这个项目，我深入理解了光影在视觉设计中的叙事作用，掌握了明暗对比和空间构建的技巧。同时，我也学会了如何通过简化的视觉元素传达复杂的概念，提升了自己的视觉表达能力。</p>
+        </div>
+      </div>
+
+      <a href="index.html#portfolio" class="back-link">返回作品集</a>
+    </div>
+  </main>
+
+  <!-- Image Viewer -->
+  <div class="image-viewer" id="imageViewer">
+    <div class="viewer-content">
+      <button class="close-btn" id="closeBtn">&times;</button>
+      <img id="viewerImg" src="" alt="">
+      <div class="viewer-description" id="viewerDesc"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 QYCP. All rights reserved.</p>
+    <p>Designed and coded with passion.</p>
+  </footer>
+
+  <script>
+    // Image Viewer Functionality
+    const projectImages = document.querySelectorAll('.project-image');
+    const imageViewer = document.getElementById('imageViewer');
+    const viewerImg = document.getElementById('viewerImg');
+    const viewerDesc = document.getElementById('viewerDesc');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // Open image viewer
+    projectImages.forEach(image => {
+      image.addEventListener('click', () => {
+        const imgSrc = image.getAttribute('data-img');
+        const imgDesc = image.getAttribute('data-desc');
+        
+        viewerImg.src = imgSrc;
+        viewerImg.alt = imgDesc;
+        viewerDesc.textContent = imgDesc;
+        imageViewer.classList.add('active');
+        
+        // Disable scrolling when viewer is active
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close image viewer
+    function closeViewer() {
+      imageViewer.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    closeBtn.addEventListener('click', closeViewer);
+
+    // Close when clicking outside the image
+    imageViewer.addEventListener('click', (e) => {
+      if (e.target === imageViewer) {
+        closeViewer();
+      }
+    });
+
+    // Close when pressing ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && imageViewer.classList.contains('active')) {
+        closeViewer();
+      }
+    });
+  </script>
+</body>
+</html>
