@@ -1,0 +1,491 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QYCP | 视觉传达设计</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #0a0a0a;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      overflow: hidden;
+    }
+
+    /* Particle Background */
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float 10s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateY(-50px) rotate(180deg);
+        opacity: 0.8;
+      }
+    }
+
+    /* Wave Animation */
+    .waves {
+      position: absolute;
+      width: 100%;
+      height: 100px;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    .waves::before,
+    .waves::after {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .waves::before {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" fill-opacity="1" d="M0,160L48,170.7C96,181,192,203,288,202.7C384,203,480,181,576,181.3C672,181,768,203,864,192C960,181,1056,139,1152,149.3C1248,160,1344,224,1392,256L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+      animation: wave-animation 15s linear infinite;
+    }
+
+    .waves::after {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.2)" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,218.7C672,213,768,171,864,176C960,181,1056,235,1152,240C1248,245,1344,203,1392,181.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+      animation: wave-animation 25s linear infinite reverse;
+    }
+
+    @keyframes wave-animation {
+      0% {
+        transform: translateX(-50%) translate(0, 0);
+      }
+      100% {
+        transform: translateX(-50%) translate(-1440px, 0);
+      }
+    }
+
+    .logo {
+      font-size: 4rem;
+      font-weight: bold;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    nav {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 100;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav li {
+      display: inline-block;
+      margin-left: 2rem;
+    }
+
+    /* New section styling */
+    .section-intro {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-intro p {
+      color: #aaa;
+      font-size: 1.1rem;
+    }
+
+    nav a {
+      font-size: 1rem;
+      letter-spacing: 1px;
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #aaa;
+    }
+
+    main {
+      padding: 4rem 0;
+      background-color: #111;
+    }
+
+    section {
+      margin-bottom: 6rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 2rem;
+      margin-top: 4rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .portfolio-category {
+      margin-bottom: 5rem;
+    }
+
+    .portfolio-category > p {
+      color: #aaa;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-img {
+      background: center/cover no-repeat;
+      height: 200px;
+      margin-bottom: 1rem;
+    }
+    
+
+
+    .project-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .about-text {
+      max-width: 600px;
+    }
+
+    .about-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: url('6.jpg') center/cover no-repeat;
+    }
+
+    footer {
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      margin: 0 0.8rem;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 3rem;
+      }
+
+      nav {
+        top: 1rem;
+        right: 1rem;
+      }
+
+      nav li {
+        margin-left: 1.2rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-content {
+        align-items: center;
+      }
+
+      .about-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#portfolio">作品集</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+  <!-- Header -->
+  <header id="home">
+    <div class="particles" id="particles"></div>
+    <div class="logo">QYCP</div>
+    <div class="waves"></div>
+  </header>
+
+  <!-- Main Content -->
+    <main class="container">
+      <!-- Portfolio Section -->
+      <section id="portfolio">
+        <h2>作品集</h2>
+        <div class="section-intro">
+          <p>设计作品展示</p>
+        </div>
+
+        <!-- Poster Category -->
+        <div class="portfolio-category">
+          <h3>海报</h3>
+          <p>探索光影与城市结构的视觉表达</p>
+          <div class="projects-grid">
+            <a href="project1.html" class="project-card">
+              <div class="project-img" style="background-image: url('1(1).jpg');"></div>
+              <div class="project-title">虚境实生</div>
+              <p>从数字存档到沉浸共生</p>
+            </a>
+            <a href="project2.html" class="project-card">
+              <div class="project-img" style="background-image: url('2(1).jpg');"></div>
+              <div class="project-title">城市脉动</div>
+              <p>捕捉都市生活的节奏与韵律</p>
+            </a>
+            <a href="project3.html" class="project-card">
+              <div class="project-img" style="background-image: url('3(1).jpg');"></div>
+              <div class="project-title">光影叙事</div>
+              <p>通过光线与阴影讲述故事</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Composition Category -->
+        <div class="portfolio-category">
+          <h3>构成</h3>
+          <p>几何形态与色彩的构成实验</p>
+          <div class="projects-grid">
+            <a href="composition1.html" class="project-card">
+              <div class="project-img" style="background-image: url('微信图片_20251205170558_112_35.jpg');"></div>
+              <div class="project-title">构成设计1</div>
+              <p>几何形态构成实验</p>
+            </a>
+            <a href="composition2.html" class="project-card">
+              <div class="project-img" style="background-image: url('微信图片_20251205173555_117_35.jpg');"></div>
+              <div class="project-title">构成设计2</div>
+              <p>色彩构成研究</p>
+            </a>
+            <a href="composition3.html" class="project-card">
+              <div class="project-img" style="background-image: url('微信图片_20251205173557_118_35.jpg');"></div>
+              <div class="project-title">构成设计3</div>
+              <p>空间构成探索</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Basic Category -->
+        <div class="portfolio-category">
+          <h3>基础</h3>
+          <p>设计基础训练</p>
+          <div class="projects-grid">
+            <a href="basic.html" class="project-card">
+              <div class="project-img" style="background-image: url('6.jpg');"></div>
+              <div class="project-title">基础训练</div>
+              <p>设计基础课程作业</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>关于我</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>我是QYCP，一名视觉传达设计专业的大一新生。我对排版、色彩理论和动态设计充满热情，正在探索如何通过视觉语言讲述故事并引发情感共鸣。</p>
+          <p>目前在学习Adobe Creative Suite、Figma以及基础的HTML/CSS，希望未来能将平面设计与交互体验结合，创造出既美观又富有功能性的作品。</p>
+        </div>
+        <div class="about-img"></div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>联系我</h2>
+      <p>欢迎通过以下方式与我联系：</p>
+      <p>Email: 15658038551@163.com</p>
+      <div class="social-links">
+        <a href="https://github.com/QYCP" target="_blank">GitHub</a>
+        <a href="https://dribbble.com/qycp" target="_blank">Dribbble</a>
+        <a href="https://instagram.com/qycp_design" target="_blank">Instagram</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 QYCP. All rights reserved.</p>
+    <p>Designed and coded with passion.</p>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links and section anchors
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          // Calculate scroll position with offset to avoid navigation bar overlap
+          const offsetTop = targetElement.offsetTop - 80; // Adjust offset value as needed
+          
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Optional: Add fade-in effect on scroll
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    projectCards.forEach(card => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+
+    // Particle background animation
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random position
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        
+        // Random size
+        const size = Math.random() * 4 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Random animation delay and duration
+        particle.style.animationDelay = Math.random() * 10 + 's';
+        particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Create particles when page loads
+    window.addEventListener('load', createParticles);
+  </script>
+</body>
+</html>
